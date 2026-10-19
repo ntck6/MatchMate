@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MatchMate · Find your next game</title>
+  <meta name="description" content="MatchMate: find badminton and football pickup games near you. Standard posts, a live map, and privacy-first joining.">
+  <meta name="theme-color" content="#0E7A45">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E7A45'/%3E%3Cpath d='M8 22V10l8 7 8-7v12' stroke='%23C8F031' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap&subset=vietnamese">
+  <!--EXTRA-HEAD-->
+  <link rel="stylesheet" href="css/styles.css">
+  <script>try{var th=localStorage.getItem('mm-theme');if(th)document.documentElement.setAttribute('data-theme',th);}catch(e){}</script>
+  <script src="js/i18n.js"></script>
+</head>
+<body data-page="home">
+  <script src="js/layout.js"></script>
+
+  <main id="main" tabindex="-1">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span><span class="grid-lines"></span></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-intro>
+            <span class="dot-live" aria-hidden="true"></span>
+            <span data-i18n="hero.eyebrow">Badminton · Football · Ho Chi Minh City</span>
+          </p>
+          <h1 id="hero-title" class="display">
+            <span data-i18n="hero.title.a">Stop scrolling Facebook.</span>
+            <span class="hl" data-i18n="hero.title.b">Start playing.</span>
+          </h1>
+          <p class="lead" data-intro data-i18n="hero.sub"></p>
+
+          <form class="quick-search" action="feed.html" method="get" data-intro>
+            <fieldset class="qs-field">
+              <legend data-i18n="hero.search.sport">Sport</legend>
+              <div class="seg" role="radiogroup">
+                <label><input type="radio" name="sport" value="all" checked><span data-i18n="sport.all">All</span></label>
+                <label><input type="radio" name="sport" value="badminton"><span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-shuttle"/></svg><span data-i18n="sport.badminton">Badminton</span></span></label>
+                <label><input type="radio" name="sport" value="football"><span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-ball"/></svg><span data-i18n="sport.football">Football</span></span></label>
+              </div>
+            </fieldset>
+            <div class="qs-field">
+              <label for="qs-when" class="qs-label" data-i18n="hero.search.when">When</label>
+              <select id="qs-when" name="when" class="input">
+                <option value="any" data-i18n="hero.search.any">Any</option>
+                <option value="today" data-i18n="hero.search.tonight">Today</option>
+                <option value="week" data-i18n="hero.search.week">Next 7 days</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg qs-submit btn-shine" data-magnetic>
+              <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+              <span data-i18n="hero.search.cta">Find games</span>
+            </button>
+          </form>
+
+          <ul class="hero-stats" data-intro>
+            <li><strong data-count>2</strong><span data-i18n="hero.stat.sports">sports at launch</span></li>
+            <li><strong>6 · 10</strong><span data-i18n="hero.stat.levels">skill levels, per sport</span></li>
+            <li><strong data-count>1</strong><span data-i18n="hero.stat.form">standard post form</span></li>
+            <li><strong>0 ₫</strong><span data-i18n="hero.stat.fee">platform fee</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="tilt" id="hero-tilt">
+            <div class="block-shape block-lime"></div>
+            <div class="block-shape block-orange"></div>
+            <div class="browser">
+              <div class="browser-bar">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-url"><svg class="icon icon-sm"><use href="#i-lock"/></svg>matchmate.vn/feed</span>
+              </div>
+              <div class="browser-body">
+                <div class="browser-feed">
+                  <div class="browser-top"><span class="browser-chip"><svg class="icon icon-sm"><use href="#i-sparkles"/></svg><span data-i18n="hero.phone.foryou">For you</span></span></div>
+                  <div id="hero-cards" class="browser-cards"></div>
+                </div>
+                <div class="browser-map">
+                  <span class="bm-road bm-r1"></span><span class="bm-road bm-r2"></span><span class="bm-road bm-r3"></span>
+                  <span class="bm-river"></span>
+                  <span class="bm-home"></span>
+                  <span class="bm-pin bm-p1 pin pin-football"><svg><use href="#i-ball"/></svg></span>
+                  <span class="bm-pin bm-p2 pin pin-badminton"><svg><use href="#i-shuttle"/></svg></span>
+                  <span class="bm-pin bm-p3 pin pin-badminton"><svg><use href="#i-shuttle"/></svg></span>
+                  <span class="bm-pin bm-p4 pin pin-football"><svg><use href="#i-ball"/></svg></span>
+                </div>
+              </div>
+            </div>
+            <div class="float-toast ft-1">
+              <span class="ft-icon ft-pending"><svg class="icon icon-sm"><use href="#i-hourglass"/></svg></span>
+              <span data-i18n="hero.toast.pending">Request sent to Khoa.Smash</span>
+            </div>
+            <div class="float-toast ft-2">
+              <span class="ft-icon ft-ok"><svg class="icon icon-sm"><use href="#i-check"/></svg></span>
+              <span data-i18n="hero.toast.approved">You’re in! Contact unlocked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section problem" aria-labelledby="problem-title">
+      <div class="container">
+        <p class="kicker reveal" data-i18n="problem.kicker">Why MatchMate</p>
+        <h2 id="problem-title" class="h2 reveal" data-i18n="problem.title">Group posts get buried. Games shouldn’t.</h2>
+        <div class="compare">
+          <div class="compare-col compare-before reveal">
+            <h3 class="compare-h"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span data-i18n="problem.before">In Facebook groups</span></h3>
+            <ul><li data-i18n="problem.b1"></li><li data-i18n="problem.b2"></li><li data-i18n="problem.b3"></li></ul>
+          </div>
+          <div class="compare-col compare-after reveal">
+            <h3 class="compare-h"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="problem.after">On MatchMate</span></h3>
+            <ul><li data-i18n="problem.a1"></li><li data-i18n="problem.a2"></li><li data-i18n="problem.a3"></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section how" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker reveal" data-i18n="home.how.kicker">How it works</p>
+          <h2 id="how-title" class="h2 reveal" data-i18n="home.how.title">From scrolling to playing in three steps</h2>
+        </div>
+        <div class="how-track">
+          <span class="how-line" aria-hidden="true"><i id="how-fill"></i></span>
+          <ol class="how-steps">
+            <li class="how-step reveal">
+              <span class="how-num">01</span>
+              <span class="how-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-search"/></svg></span>
+              <h3 class="h3" data-i18n="home.how.s1.t">Find a game</h3>
+              <p class="muted" data-i18n="home.how.s1.d"></p>
+            </li>
+            <li class="how-step reveal">
+              <span class="how-num">02</span>
+              <span class="how-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-shield"/></svg></span>
+              <h3 class="h3" data-i18n="home.how.s2.t">Send a request</h3>
+              <p class="muted" data-i18n="home.how.s2.d"></p>
+            </li>
+            <li class="how-step reveal">
+              <span class="how-num">03</span>
+              <span class="how-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-nav"/></svg></span>
+              <h3 class="h3" data-i18n="home.how.s3.t">Show up and play</h3>
+              <p class="muted" data-i18n="home.how.s3.d"></p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPLORE PAGES -->
+    <section class="section explore" aria-labelledby="feat-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker reveal" data-i18n="home.feat.kicker">Explore</p>
+          <h2 id="feat-title" class="h2 reveal" data-i18n="home.feat.title">Everything in one place</h2>
+        </div>
+        <div class="feature-grid">
+          <a class="feature feature-feed reveal" href="feed.html">
+            <span class="feature-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-map"/></svg></span>
+            <h3 class="h3" data-i18n="feat.feed.t">Feed & map</h3>
+            <p data-i18n="feat.feed.d"></p>
+            <span class="feature-cta"><span data-i18n="feat.cta">Open</span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+            <span class="feature-art" aria-hidden="true"><i class="pin pin-football"><svg><use href="#i-ball"/></svg></i><i class="pin pin-badminton"><svg><use href="#i-shuttle"/></svg></i><i class="pin pin-badminton"><svg><use href="#i-shuttle"/></svg></i></span>
+          </a>
+          <a class="feature feature-create reveal" href="create.html">
+            <span class="feature-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-plus"/></svg></span>
+            <h3 class="h3" data-i18n="feat.create.t">Host a game</h3>
+            <p data-i18n="feat.create.d"></p>
+            <span class="feature-cta"><span data-i18n="feat.cta">Open</span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+          </a>
+          <a class="feature feature-join reveal" href="join.html">
+            <span class="feature-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-unlock"/></svg></span>
+            <h3 class="h3" data-i18n="feat.join.t">Join safely</h3>
+            <p data-i18n="feat.join.d"></p>
+            <span class="feature-cta"><span data-i18n="feat.cta">Open</span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+          </a>
+          <a class="feature feature-about reveal" href="about.html">
+            <span class="feature-icon"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-bar"/></svg></span>
+            <h3 class="h3" data-i18n="feat.about.t">Skill scales & personas</h3>
+            <p data-i18n="feat.about.d"></p>
+            <span class="feature-cta"><span data-i18n="feat.cta">Open</span><svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-ur"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE GAMES -->
+    <section class="section live" aria-labelledby="live-title">
+      <div class="container">
+        <div class="section-head section-head-row">
+          <div>
+            <p class="kicker reveal" data-i18n="home.live.kicker">Open right now</p>
+            <h2 id="live-title" class="h2 reveal" data-i18n="home.live.title">Games looking for players</h2>
+          </div>
+          <a class="btn btn-ghost reveal" href="feed.html"><span data-i18n="home.live.all">See all games</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="live-grid" id="home-live"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-block reveal">
+          <h2 id="cta-title" class="display display-sm" data-i18n="cta.title">Your next game is probably already posted.</h2>
+          <p class="lead" data-i18n="cta.sub"></p>
+          <div class="btn-row">
+            <a class="btn btn-dark btn-lg" href="feed.html" data-magnetic><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span data-i18n="cta.primary">Browse games</span></a>
+            <a class="btn btn-outline-dark btn-lg" href="create.html"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span data-i18n="cta.secondary">Host a game</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-region" id="toasts" role="status" aria-live="polite"></div>
+
+  <!--EXTRA-SCRIPTS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/pages/home.js"></script>
+</body>
+</html>

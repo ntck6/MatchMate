@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MatchMate · Find your next game</title>
+  <meta name="description" content="MatchMate: find badminton and football pickup games near you. Standard posts, a live map, and privacy-first joining.">
+  <meta name="theme-color" content="#0E7A45">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E7A45'/%3E%3Cpath d='M8 22V10l8 7 8-7v12' stroke='%23C8F031' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap&subset=vietnamese">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>try{var th=localStorage.getItem('mm-theme');if(th)document.documentElement.setAttribute('data-theme',th);}catch(e){}</script>
+  <script src="js/i18n.js"></script>
+</head>
+<body data-page="feed">
+  <script src="js/layout.js"></script>
+
+  <main id="main" tabindex="-1">
+    <section class="page-head" aria-labelledby="page-title">
+      <div class="page-head-bg" aria-hidden="true"><span class="orb orb-1"></span><span class="grid-lines"></span></div>
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb" data-intro>
+          <a href="index.html" data-i18n="crumb.home">Home</a>
+          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-chev"/></svg>
+          <span aria-current="page" data-i18n="nav.feed"></span>
+        </nav>
+        <p class="kicker" data-intro data-i18n="feed.kicker"></p>
+        <h1 id="page-title" class="h1" data-i18n="feed.title"></h1>
+        <p class="section-sub" data-intro data-i18n="feed.sub"></p>
+      </div>
+    </section>
+    <section class="section section-tight feed-section">
+      <div class="container">
+<div class="toolbar">
+          <div class="chips" role="group" aria-label="Sport filter" id="sport-filter">
+            <button type="button" class="chip" data-sport="all" aria-pressed="true"><span data-i18n="sport.all">All</span></button>
+            <button type="button" class="chip" data-sport="badminton" aria-pressed="false"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-shuttle"/></svg><span data-i18n="sport.badminton">Badminton</span></button>
+            <button type="button" class="chip" data-sport="football" aria-pressed="false"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-ball"/></svg><span data-i18n="sport.football">Football</span></button>
+          </div>
+          <div class="view-toggle" id="view-toggle" role="group" data-i18n-attr="aria-label:feed.view.label" aria-label="View" data-active="list">
+            <span class="view-pill" aria-hidden="true"></span>
+            <button type="button" data-view="list" aria-pressed="true"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-list"/></svg><span data-i18n="feed.view.list">List</span></button>
+            <button type="button" data-view="map" aria-pressed="false"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-map"/></svg><span data-i18n="feed.view.map">Map</span></button>
+          </div>
+        </div>
+
+        <div class="feed-layout" id="feed-layout" data-view="list">
+          <div class="feed-list">
+            <div class="foryou">
+              <div class="foryou-head">
+                <h3 class="h3"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg><span data-i18n="feed.foryou">Suggested for Ha.Runner</span></h3>
+                <p class="muted small" data-i18n="feed.foryou.hint"></p>
+              </div>
+              <div class="foryou-row" id="foryou-row"></div>
+            </div>
+
+            <div class="list-head">
+              <h3 class="h3" data-i18n="feed.all">All open games</h3>
+              <span class="muted small" id="feed-count" aria-live="polite"></span>
+            </div>
+            <div class="cards" id="feed-cards"></div>
+          </div>
+
+          <div class="feed-map">
+            <div class="map-frame">
+              <div id="feed-map" class="map" role="region" aria-label="Map of open games"></div>
+              <p class="map-fallback" id="feed-map-fallback" data-i18n="feed.map.loading">Loading map…</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-region" id="toasts" role="status" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/pages/feed.js"></script>
+</body>
+</html>

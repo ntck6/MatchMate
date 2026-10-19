@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MatchMate · Find your next game</title>
+  <meta name="description" content="MatchMate: find badminton and football pickup games near you. Standard posts, a live map, and privacy-first joining.">
+  <meta name="theme-color" content="#0E7A45">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E7A45'/%3E%3Cpath d='M8 22V10l8 7 8-7v12' stroke='%23C8F031' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap&subset=vietnamese">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>try{var th=localStorage.getItem('mm-theme');if(th)document.documentElement.setAttribute('data-theme',th);}catch(e){}</script>
+  <script src="js/i18n.js"></script>
+</head>
+<body data-page="create">
+  <script src="js/layout.js"></script>
+
+  <main id="main" tabindex="-1">
+    <section class="page-head" aria-labelledby="page-title">
+      <div class="page-head-bg" aria-hidden="true"><span class="orb orb-1"></span><span class="grid-lines"></span></div>
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb" data-intro>
+          <a href="index.html" data-i18n="crumb.home">Home</a>
+          <svg class="icon icon-sm" aria-hidden="true"><use href="#i-chev"/></svg>
+          <span aria-current="page" data-i18n="nav.create"></span>
+        </nav>
+        <p class="kicker" data-intro data-i18n="create.kicker"></p>
+        <h1 id="page-title" class="h1" data-i18n="create.title"></h1>
+        <p class="section-sub" data-intro data-i18n="create.sub"></p>
+      </div>
+    </section>
+    <section class="section section-tight create-section">
+      <div class="container">
+<div class="create-grid">
+          <div class="panel create-panel">
+            <ol class="stepper" id="stepper">
+              <li data-step="1"><span class="step-n">1</span><span class="step-l" data-i18n="create.s1">Sport</span></li>
+              <li data-step="2"><span class="step-n">2</span><span class="step-l" data-i18n="create.s2">Time & place</span></li>
+              <li data-step="3"><span class="step-n">3</span><span class="step-l" data-i18n="create.s3">Players & level</span></li>
+              <li data-step="4"><span class="step-n">4</span><span class="step-l" data-i18n="create.s4">Cost & joining</span></li>
+            </ol>
+            <p class="step-count muted small" id="step-count" aria-live="polite"></p>
+
+            <form id="create-form" novalidate>
+              <!-- Step 1 -->
+              <div class="step" data-step="1">
+                <fieldset class="field">
+                  <legend class="label" data-i18n="create.sport">Sport</legend>
+                  <div class="tiles tiles-2">
+                    <label class="tile">
+                      <input type="radio" name="sport" value="badminton" checked>
+                      <span class="tile-body"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-shuttle"/></svg><span data-i18n="sport.badminton">Badminton</span></span>
+                    </label>
+                    <label class="tile">
+                      <input type="radio" name="sport" value="football">
+                      <span class="tile-body"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-ball"/></svg><span data-i18n="sport.football">Football</span></span>
+                    </label>
+                  </div>
+                </fieldset>
+                <div class="field">
+                  <label class="label" for="f-format" data-i18n="create.format">Format</label>
+                  <select class="input" id="f-format" name="format"></select>
+                </div>
+                <div class="field">
+                  <label class="label" for="f-title"><span data-i18n="create.titleField">Title</span> <span class="req" aria-hidden="true">*</span></label>
+                  <input class="input" id="f-title" name="title" maxlength="80" required aria-describedby="f-title-help f-title-err" data-i18n-attr="placeholder:create.titlePh">
+                  <p class="help" id="f-title-help" data-i18n="create.titleHelp"></p>
+                  <p class="error" id="f-title-err" hidden></p>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="step" data-step="2" hidden>
+                <div class="row-3">
+                  <div class="field">
+                    <label class="label" for="f-date"><span data-i18n="create.date">Date</span> <span class="req" aria-hidden="true">*</span></label>
+                    <input class="input" type="date" id="f-date" name="date" required aria-describedby="f-date-err">
+                    <p class="error" id="f-date-err" hidden></p>
+                  </div>
+                  <div class="field">
+                    <label class="label" for="f-time" data-i18n="create.time">Start time</label>
+                    <input class="input" type="time" id="f-time" name="time" value="19:00" step="900">
+                  </div>
+                  <div class="field">
+                    <label class="label" for="f-dur" data-i18n="create.duration">Duration</label>
+                    <select class="input" id="f-dur" name="dur"></select>
+                  </div>
+                </div>
+                <div class="field">
+                  <span class="label" data-i18n="create.recent">Recent courts</span>
+                  <div class="chips chips-wrap" id="recent-courts"></div>
+                </div>
+                <div class="field">
+                  <label class="label" for="f-venue"><span data-i18n="create.venue">Court name</span> <span class="req" aria-hidden="true">*</span></label>
+                  <input class="input" id="f-venue" name="venue" required autocomplete="off" aria-describedby="f-venue-help f-venue-err">
+                  <p class="help" id="f-venue-help" data-i18n="create.venueHelp"></p>
+                  <p class="error" id="f-venue-err" hidden></p>
+                </div>
+                <div class="field">
+                  <label class="label" for="f-address" data-i18n="create.address">Address</label>
+                  <input class="input" id="f-address" name="address" autocomplete="off">
+                </div>
+                <div class="field">
+                  <span class="label" data-i18n="create.pin">Drag the pin to the exact court entrance</span>
+                  <div class="map-frame map-frame-sm">
+                    <div id="pin-map" class="map" role="region" aria-label="Court location picker"></div>
+                  </div>
+                  <p class="help mono" id="pin-coords"></p>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="step" data-step="3" hidden>
+                <div class="row-2">
+                  <div class="field">
+                    <label class="label" for="f-total" data-i18n="create.total">Total players</label>
+                    <div class="stepper-input">
+                      <button type="button" class="icon-btn" data-dec="f-total" aria-label="−"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <input class="input" type="number" inputmode="numeric" id="f-total" name="total" min="2" max="30" value="6" aria-describedby="f-total-help">
+                      <button type="button" class="icon-btn" data-inc="f-total" aria-label="+"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <p class="help" id="f-total-help" data-i18n="create.totalHelp"></p>
+                  </div>
+                  <div class="field">
+                    <label class="label" for="f-filled" data-i18n="create.filled">Already confirmed</label>
+                    <div class="stepper-input">
+                      <button type="button" class="icon-btn" data-dec="f-filled" aria-label="−"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                      <input class="input" type="number" inputmode="numeric" id="f-filled" name="filled" min="1" max="29" value="4" aria-describedby="f-filled-help f-slots-err">
+                      <button type="button" class="icon-btn" data-inc="f-filled" aria-label="+"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                    </div>
+                    <p class="help" id="f-filled-help" data-i18n="create.filledHelp"></p>
+                  </div>
+                </div>
+                <p class="open-slots" id="open-slots"></p>
+                <p class="error" id="f-slots-err" hidden></p>
+                <div class="row-2">
+                  <div class="field">
+                    <label class="label" for="f-smin" data-i18n="create.skillMin">Lowest level</label>
+                    <select class="input" id="f-smin" name="skillMin" aria-describedby="f-skill-err"></select>
+                  </div>
+                  <div class="field">
+                    <label class="label" for="f-smax" data-i18n="create.skillMax">Highest level</label>
+                    <select class="input" id="f-smax" name="skillMax" aria-describedby="f-skill-err"></select>
+                  </div>
+                </div>
+                <div class="skill-track" id="skill-track" aria-hidden="true"></div>
+                <p class="error" id="f-skill-err" hidden></p>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="step" data-step="4" hidden>
+                <div class="row-2">
+                  <div class="field">
+                    <label class="label" for="f-cost" data-i18n="create.cost">Cost</label>
+                    <div class="input-affix">
+                      <input class="input" type="number" inputmode="numeric" id="f-cost" name="cost" min="0" step="5000" value="60000" aria-describedby="f-cost-help f-cost-err">
+                      <span class="affix">₫</span>
+                    </div>
+                    <p class="help" id="f-cost-help" data-i18n="create.costHelp"></p>
+                    <p class="error" id="f-cost-err" hidden></p>
+                  </div>
+                  <fieldset class="field">
+                    <legend class="label" data-i18n="create.costUnit">Cost is</legend>
+                    <div class="seg seg-block">
+                      <label><input type="radio" name="costUnit" value="person" checked><span data-i18n="create.unit.person">Per person</span></label>
+                      <label><input type="radio" name="costUnit" value="total"><span data-i18n="create.unit.total">Total, split evenly</span></label>
+                    </div>
+                  </fieldset>
+                </div>
+                <fieldset class="field">
+                  <legend class="label" data-i18n="create.joinMode">How do people join?</legend>
+                  <div class="tiles tiles-2">
+                    <label class="tile tile-left">
+                      <input type="radio" name="joinMode" value="auto">
+                      <span class="tile-body">
+                        <span class="tile-title"><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg><span data-i18n="mode.auto">Instant join</span></span>
+                        <span class="tile-desc" data-i18n="create.auto.desc"></span>
+                      </span>
+                    </label>
+                    <label class="tile tile-left">
+                      <input type="radio" name="joinMode" value="pending" checked>
+                      <span class="tile-body">
+                        <span class="tile-title"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span data-i18n="mode.pending">Host approves</span></span>
+                        <span class="tile-desc" data-i18n="create.pending.desc"></span>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+                <div class="field">
+                  <label class="label" for="f-notes" data-i18n="create.notes">Notes (optional)</label>
+                  <textarea class="input" id="f-notes" name="notes" rows="3" maxlength="300" data-i18n-attr="placeholder:create.notesPh"></textarea>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-ghost" id="create-back">
+                  <svg class="icon icon-flip" aria-hidden="true"><use href="#i-arrow"/></svg><span data-i18n="create.back">Back</span>
+                </button>
+                <button type="submit" class="btn btn-primary" id="create-next">
+                  <span id="create-next-label" data-i18n="create.next">Next</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                </button>
+              </div>
+            </form>
+
+            <div class="create-done" id="create-done" hidden tabindex="-1">
+              <span class="done-badge"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-check"/></svg></span>
+              <h3 class="h3" data-i18n="create.done.title">Your game is live</h3>
+              <p class="muted" data-i18n="create.done.body"></p>
+              <div class="btn-row">
+                <button type="button" class="btn btn-primary" id="done-map"><svg class="icon" aria-hidden="true"><use href="#i-map"/></svg><span data-i18n="create.done.map">See it on the map</span></button>
+                <button type="button" class="btn btn-ghost" id="done-again"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span data-i18n="create.done.again">Post another</span></button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="preview-col" aria-labelledby="preview-title">
+            <div class="preview-sticky">
+              <h3 class="h3" id="preview-title" data-i18n="create.preview">Live preview</h3>
+              <p class="muted small" data-i18n="create.previewHint"></p>
+              <div id="create-preview"></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-region" id="toasts" role="status" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/pages/create.js"></script>
+</body>
+</html>

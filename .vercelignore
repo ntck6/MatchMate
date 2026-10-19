@@ -1,0 +1,7 @@
+# Only the site itself is uploaded to Vercel
+.github
+scripts
+README.md
+DEPLOY.md
+package.json
+node_modules

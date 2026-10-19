@@ -1,0 +1,13 @@
+{
+  "name": "matchmate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MatchMate: a sports matchmaking web prototype (static HTML/CSS/JS, EN/VI)",
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "dev": "python -m http.server 5173"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
